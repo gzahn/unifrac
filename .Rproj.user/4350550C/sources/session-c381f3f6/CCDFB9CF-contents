@@ -27,10 +27,14 @@ if(!identical(row.names(asv),tree$tip.label)){
   asv <- asv[tree$tip.label,]
 }
 
+
 # UniFrac distance ####
 
+# normalize counts in each sample
+asv_relabund <- apply(as.matrix(asv),2,function(x){x/sum(x)})
+
 # rbiom::unifrac() assumes that taxa are rows and samples are columns
-dist_wu <- rbiom::unifrac(biom=as.matrix(asv),weighted = TRUE,tree=tree)
+dist_wu <- rbiom::unifrac(biom=asv_relabund,weighted = TRUE,tree=tree)
 
 # Ordinate ####
 # NMDS with unifrac distance
