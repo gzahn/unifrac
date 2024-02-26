@@ -1,0 +1,1 @@
+Code for loading externally generated phylogenetic tree to perform unifrac distance calculation. This is in response to [https://github.com/joey711/phyloseq/issues/956](https://github.com/joey711/phyloseq/issues/956).
