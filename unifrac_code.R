@@ -58,7 +58,10 @@ ps <- phyloseq(met,
                otu_table(asv,taxa_are_rows = TRUE),
                phy_tree(tree))
 
-ord <- ps %>% ordinate(method="NMDS",distance = "unifrac")
+ord <- ps %>% 
+  transform_sample_counts(function(x){x/sum(x)}) %>%
+  ordinate(method="NMDS",distance = "unifrac")
+
 plot_ordination(ps, ord, color="SampleType")
 
 # honestly, phyloseq version looks nicer...
